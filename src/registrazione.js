@@ -11,27 +11,24 @@ const registration = (e) => {
         birthDate : bday.value
     }
     fetch(url, {
-        method: 'POST',// *GET, POST, PUT, DELETE, etc.
-        mode: 'cors', //no-cors, *cors, same-origin
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
         headers: {
             'Content-Type': 'application/json'
-            // 'Content-Type' : 'application/x-www-form-urlencoder'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: JSON.stringify(user)
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        return response.json();
+    }).then(data => {
+        console.log(data);
+        window.location.href = 'login.html';
+    }).catch(error => {
+        console.log("si è verificato un problema durante l'operazione fetch:", error);
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(response.statusText);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log(data);
-        })
-        .catch(error => {
-            console.log("si è verificato un problema durante l'operazione di fetch:", error);
-        })
-    
 }
 
 const fnam = document.querySelector("#firstName");

@@ -1,3 +1,6 @@
+import {writeToken} from './jwt.js'
+
+
 const url = "http://localhost:8080/pw-regis/resources/login";
 
 const login = (e) => {
@@ -20,7 +23,10 @@ const login = (e) => {
         }
         return response.json();
     }).then(data => {
-        console.log(data);
+        const { token } = data;
+        writeToken(token);
+        console.log(token);
+        window.location.href = 'posts.html';
     }).catch(error => {
         console.log('si e verificato un errore durante fetch:' + error
         );
