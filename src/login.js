@@ -1,7 +1,7 @@
 import {writeToken} from './jwt.js'
 
 
-const url = "http://localhost:8080/pw-regis/resources/login";
+const url = "http://localhost:8080/pw-regis/resources/authentication";
 
 const login = (e) => {
     e.preventDefault();

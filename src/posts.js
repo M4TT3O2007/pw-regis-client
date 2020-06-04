@@ -80,6 +80,13 @@ const renderPost = (post) => { `
 if (!isTokenValid()) {
     window.location.href = "login.html";
 }
+
+
+
+
+
+
+
 const { sub } = decodeToken();
 
 loadPosts(`http://localhost:8080/pw-regis/resources/users/${sub}/posts`);
