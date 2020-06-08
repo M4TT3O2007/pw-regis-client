@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <form action="#">
-    <input type="text" id="usr" placeholder="inserisci lo username">
-    <input type="password" id="pwd" placeholder="inserisci la password">
-    <input type="submit" id="log">
-</form>
-    
+    <h1>Login</h1>
+    <form action="#" method="POST">
+        <input type="text" name="usr" id="usr" placeholder="username" required>
+        <input type="password" name="pwd" id="pwd" placeholder="password" required  >
+        <input type="submit" value="Invia">
+        <a href="registration.html">registrati</a>
+    </form>
     <script src="login.js" type="module"></script>
 </body>
-
 </html>

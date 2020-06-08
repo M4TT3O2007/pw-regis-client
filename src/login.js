@@ -1,41 +1,24 @@
-import {writeToken} from './jwt.js'
+import { writeToken } from "./jwt.js";
+import AuthenticationStore from './AuthenticationStore.js';
 
-
-const url = "http://localhost:8080/pw-regis/resources/authentication";
-
-const login = (e) => {
+const onlogin = (e) => {
     e.preventDefault();
-    const auth = {
-
-        usr: usrn.value,
-        pwd: pswd.value
+    const credential = {
+        usr: usrEl.value,
+        pwd: pwdEl.value
     }
-    fetch(url, {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json'
-        }, body: JSON.stringify(auth)
-    }).then(response => {
-        if (!response.ok) {
-            throw new Error(response.statusText);
-
-        }
-        return response.json();
-    }).then(data => {
-        const { token } = data;
-        writeToken(token);
-        console.log(token);
-        window.location.href = 'posts.html';
-    }).catch(error => {
-        console.log('si e verificato un errore durante fetch:' + error
-        );
-    }
-    )
+    store.login(credential)
+        .then(json => {
+            const { token } = json;
+            writeToken(token);
+            window.location.href = 'posts.html';
+        });
 }
 
+const store = new AuthenticationStore();
+const usrEl = document.getElementById("usr");
+const pwdEl = document.getElementById("pwd");
+const formEl = document.querySelector('form');
 
-const usrn = document.querySelector("#usr");
-const pswd = document.querySelector("#pwd");
-const sub = document.querySelector("#log");
-sub.addEventListener('click', login);
+formEl.addEventListener("submit", onlogin);
+
